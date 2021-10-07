@@ -24,18 +24,5 @@ bool SavingsAccount::Deposit(float amount, Currency currency) {
 }
 
 bool SavingsAccount::Withdraw(float amount, Currency currency) {
-  float amountOfCurrency = amount*currency;
-
-  if (currency == DOLLAR && dollars >= amountOfCurrency) {
-    dollars -= amountOfCurrency;
-  } else if (currency == EURO && euros >= amountOfCurrency) {
-    euros -= amountOfCurrency;
-  } else if (currency == TENGE && tenge >= amountOfCurrency) {
-    tenge -= amountOfCurrency;
-  } else {
-    return false;
-  }
-
-  CalculateBalance();
-  return true;
+  return Account::Withdraw(amount, currency);
 }

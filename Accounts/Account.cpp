@@ -38,6 +38,24 @@ bool Account::Deposit(float amount, Currency currency) {
   return true;
 }
 
+bool Account::Withdraw(float amount, Currency currency) {
+  float amountOfCurrency = amount*currency;
+
+  if (currency == DOLLAR && dollars >= amountOfCurrency) {
+    dollars -= amountOfCurrency;
+  } else if (currency == EURO && euros >= amountOfCurrency) {
+    euros -= amountOfCurrency;
+  } else if (currency == TENGE && tenge >= amountOfCurrency) {
+    tenge -= amountOfCurrency;
+  } else {
+    return false;
+  }
+
+  CalculateBalance();
+
+  return true;
+}
+
 const string &Account::getName() const {
   return name;
 }
@@ -58,14 +76,14 @@ void Account::setName(const string &name) {
   Account::name = name;
 }
 
-void Account::setDollars(int dollars) {
+void Account::setDollars(float dollars) {
   Account::dollars = dollars;
 }
 
-void Account::setEuros(int euros) {
+void Account::setEuros(float euros) {
   Account::euros = euros;
 }
 
-void Account::setTenge(int tenge) {
+void Account::setTenge(float tenge) {
   Account::tenge = tenge;
 }

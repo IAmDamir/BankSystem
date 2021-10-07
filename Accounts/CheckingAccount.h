@@ -9,9 +9,10 @@
 
 #include "Account.h"
 
-class CheckingAccount : Account{
+class CheckingAccount : protected Account{
 public:
   CheckingAccount(string name, float dollars, float euros, float tenge);
+  ~CheckingAccount();
 
   bool Deposit(float amount, Currency currency) override;
   bool Withdraw(float amount, Currency currency) override;

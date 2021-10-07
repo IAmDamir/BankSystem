@@ -7,8 +7,15 @@
 #define BANKSYSTEM_TRUSTACCOUNT_H
 
 
-class TrustAccount {
+#include "SavingsAccount.h"
 
+class TrustAccount : protected SavingsAccount{
+public:
+  TrustAccount(string name, float dollars, float euros, float tenge, float interestRate);
+  ~TrustAccount();
+
+  bool Deposit(float amount, Currency currency) override;
+  bool Withdraw(float amount, Currency currency) override;
 };
 
 

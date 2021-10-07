@@ -10,6 +10,8 @@ CheckingAccount::CheckingAccount(string name, float dollars, float euros, float 
   this->fee = 1.5;
 }
 
+CheckingAccount::~CheckingAccount() = default;
+
 bool CheckingAccount::Deposit(float amount, Currency currency) {
   return Account::Deposit(amount, currency);
 }
