@@ -12,7 +12,7 @@
 class TrustAccount : public SavingsAccount{
 public:
   explicit TrustAccount(string name = "Unknown account",
-               float dollars = 0, float euros  = 0, float tenge = 0, float interestRate = 0);
+               float dollars = 0, float euros  = 0, float tenge = 0, float interestRate = 1);
   ~TrustAccount() override;
 
   bool Deposit(float amount, Currency currency) override;

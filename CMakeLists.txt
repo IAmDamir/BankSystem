@@ -6,4 +6,5 @@ add_executable(main main.cpp Accounts/Currency.h
                 Accounts/Account.cpp Accounts/Account.h
                 Accounts/SavingsAccount.cpp Accounts/SavingsAccount.h
                 Accounts/CheckingAccount.cpp Accounts/CheckingAccount.h
-                Accounts/TrustAccount.cpp Accounts/TrustAccount.h)
+                Accounts/TrustAccount.cpp Accounts/TrustAccount.h
+        )

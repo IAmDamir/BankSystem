@@ -7,6 +7,8 @@
 TrustAccount::TrustAccount(string name, float dollars, float euros, float tenge, float interestRate) :
 SavingsAccount(std::move(name), dollars, euros, tenge, interestRate) {}
 
+TrustAccount::~TrustAccount() = default;
+
 bool TrustAccount::Deposit(float amount, Currency currency) {
   SavingsAccount::Deposit(amount, currency);
 
@@ -28,12 +30,14 @@ bool TrustAccount::Deposit(float amount, Currency currency) {
       break;
   }
 
+  CalculateBalance();
+
   return true;
 }
 
 bool TrustAccount::Withdraw(float amount, Currency currency) {
   if (balance * 0.2 > amount*currency) {
-    return Account::Withdraw(amount, currency);
+    return SavingsAccount::Withdraw(amount, currency);
   }
 
   return false;
@@ -50,6 +54,3 @@ void TrustAccount::Print(ostream &out) {
   out << "Your interest rate is: " << interestRate << endl;
   out << "--------------------------------------------------" << endl;
 }
-
-TrustAccount::~TrustAccount() = default;
-

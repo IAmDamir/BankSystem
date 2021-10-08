@@ -4,35 +4,33 @@
 #include "Accounts/CheckingAccount.h"
 
 int main() {
-  Account *account = new SavingsAccount();
+  Account *savingsAccount = new SavingsAccount();
 
-  account->Deposit(122, DOLLAR);
-  account->Withdraw(123, DOLLAR);
+  savingsAccount->Deposit(122, DOLLAR);
+  savingsAccount->Withdraw(123, DOLLAR);
 
-  cout << *account;
+  cout << *savingsAccount;
 
-  account->Withdraw(122, DOLLAR);
+  savingsAccount->Withdraw(122, DOLLAR);
 
-  cout << *account;
+  cout << *savingsAccount;
 
-  delete account;
 
-  account = new CheckingAccount();
+  CheckingAccount checkingAccount;
 
-  account->Deposit(123, EURO);
-  account->Withdraw(104.55, EURO);
+  checkingAccount.Deposit(123, EURO);
+  checkingAccount.Withdraw(104.55, EURO);
 
-  cout << *account;
+  cout << checkingAccount;
 
-  delete account;
 
-  account = new TrustAccount();
+  Account *trustAccount = new TrustAccount();
 
-  account->Deposit(1500, EURO);
-  account->Withdraw(1500*0.2, EURO);
+  trustAccount->Deposit(1500, EURO);
 
-  cout << *account;
+  cout << *trustAccount;
 
-  delete account;
+  delete savingsAccount;
+  delete trustAccount;
   return 0;
 }

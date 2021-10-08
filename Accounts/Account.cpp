@@ -15,6 +15,7 @@ Account::Account(string name, float dollars, float euros, float tenge) {
 Account::~Account() = default;
 
 void Account::CalculateBalance() {
+  // Rounds each currency before starting calculating
   dollars = round(dollars*100)/100;
   euros = round(euros*100)/100;
   tenge = round(tenge*100)/100;
@@ -66,15 +67,12 @@ ostream &operator<<(ostream &out, Account &account) {
 const string &Account::getName() const {
   return name;
 }
-
 float Account::getDollars() const {
   return dollars;
 }
-
 float Account::getEuros() const {
   return euros;
 }
-
 float Account::getTenge() const {
   return tenge;
 }
@@ -82,15 +80,12 @@ float Account::getTenge() const {
 void Account::setName(const string &name) {
   Account::name = name;
 }
-
 void Account::setDollars(float dollars) {
   Account::dollars = dollars;
 }
-
 void Account::setEuros(float euros) {
   Account::euros = euros;
 }
-
 void Account::setTenge(float tenge) {
   Account::tenge = tenge;
 }
