@@ -7,7 +7,7 @@
 CheckingAccount::CheckingAccount(string name, float dollars, float euros, float tenge) :
   Account(std::move(name), dollars, euros, tenge) {
 
-  this->fee = 1.5;
+  this->fee = 15.0;
 }
 
 CheckingAccount::~CheckingAccount() = default;
@@ -17,7 +17,7 @@ bool CheckingAccount::Deposit(float amount, Currency currency) {
 }
 
 bool CheckingAccount::Withdraw(float amount, Currency currency) {
-  float amountOfCurrency = amount*currency*fee/100;
+  float amountOfCurrency = amount + amount*(fee/100);
 
   if (currency == DOLLAR && dollars >= amountOfCurrency) {
     dollars -= amountOfCurrency;
@@ -31,4 +31,24 @@ bool CheckingAccount::Withdraw(float amount, Currency currency) {
 
   CalculateBalance();
   return true;
+}
+
+void CheckingAccount::Print(ostream &out) {
+  out << "--------------------------------------------------" << endl;
+  out << "This is " << name << "'s Checking account" << endl;
+  out << "Your current balance is" << endl;
+  out << "Tenge: " << tenge << endl;
+  out << "Euros: " << euros << endl;
+  out << "Dollars: " << dollars << endl;
+  out << "Total in Tenge: " << balance << endl;
+  out << "Your fee is: " << fee << '%' << endl;
+  out << "--------------------------------------------------" << endl;
+}
+
+float CheckingAccount::getFee() const {
+  return fee;
+}
+
+void CheckingAccount::setFee(float fee) {
+  CheckingAccount::fee = fee;
 }

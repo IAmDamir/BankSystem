@@ -8,6 +8,7 @@
 
 #include <string>
 #include <cmath>
+#include <iostream>
 #include "Currency.h"
 
 using namespace std;
@@ -15,11 +16,14 @@ using namespace std;
 class Account {
 public:
   explicit Account(string name = "Unnamed Account", float dollars = 0.0, float euros = 0.0, float tenge = 0.0);
-  ~Account();
+  virtual ~Account() = 0;
 
   void CalculateBalance();
   virtual bool Deposit(float amount, Currency currency) = 0;
   virtual bool Withdraw(float amount, Currency currency) = 0;
+  virtual void Print(ostream& out) = 0;
+
+  friend ostream& operator<<(ostream& out, Account& account);
 
   void setName(const string &name);
 

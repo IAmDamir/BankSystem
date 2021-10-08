@@ -26,3 +26,23 @@ bool SavingsAccount::Deposit(float amount, Currency currency) {
 bool SavingsAccount::Withdraw(float amount, Currency currency) {
   return Account::Withdraw(amount, currency);
 }
+
+void SavingsAccount::Print(ostream& out) {
+  out << "--------------------------------------------------" << endl;
+  out << "This is " << name << "'s Savings account" << endl;
+  out << "Your current balance is" << endl;
+  out << "Tenge: " << tenge << endl;
+  out << "Euros: " << euros << endl;
+  out << "Dollars: " << dollars << endl;
+  out << "Total in Tenge: " << balance << endl;
+  out << "Your interest rate is: " << interestRate << endl;
+  out << "--------------------------------------------------" << endl;
+}
+
+float SavingsAccount::getInterestRate() const {
+  return interestRate;
+}
+
+void SavingsAccount::setInterestRate(float interestRate) {
+  SavingsAccount::interestRate = interestRate;
+}

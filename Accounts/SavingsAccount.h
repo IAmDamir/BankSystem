@@ -8,13 +8,19 @@
 
 #include "Account.h"
 
-class SavingsAccount : protected Account {
+class SavingsAccount : public Account {
 public:
-  explicit SavingsAccount(string name, float dollars, float euros, float tenge, float interestRate = 1.0);
-  ~SavingsAccount();
+  explicit SavingsAccount(string name = "Unknown Account",
+                          float dollars = 0, float euros = 0, float tenge = 0, float interestRate = 1);
+  ~SavingsAccount() override;
 
   bool Deposit(float amount, Currency currency) override;
   bool Withdraw(float amount, Currency currency) override;
+  void Print(ostream &out) override;
+
+  float getInterestRate() const;
+
+  void setInterestRate(float interestRate);
 
 protected:
   float interestRate;

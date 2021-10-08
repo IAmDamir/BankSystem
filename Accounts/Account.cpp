@@ -15,6 +15,10 @@ Account::Account(string name, float dollars, float euros, float tenge) {
 Account::~Account() = default;
 
 void Account::CalculateBalance() {
+  dollars = round(dollars*100)/100;
+  euros = round(euros*100)/100;
+  tenge = round(tenge*100)/100;
+
   balance = dollars*DOLLAR;
   balance += euros*EURO;
   balance += tenge*TENGE;
@@ -39,14 +43,12 @@ bool Account::Deposit(float amount, Currency currency) {
 }
 
 bool Account::Withdraw(float amount, Currency currency) {
-  float amountOfCurrency = amount*currency;
-
-  if (currency == DOLLAR && dollars >= amountOfCurrency) {
-    dollars -= amountOfCurrency;
-  } else if (currency == EURO && euros >= amountOfCurrency) {
-    euros -= amountOfCurrency;
-  } else if (currency == TENGE && tenge >= amountOfCurrency) {
-    tenge -= amountOfCurrency;
+  if (currency == DOLLAR && dollars >= amount) {
+    dollars -= amount;
+  } else if (currency == EURO && euros >= amount) {
+    euros -= amount;
+  } else if (currency == TENGE && tenge >= amount) {
+    tenge -= amount;
   } else {
     return false;
   }
@@ -54,6 +56,11 @@ bool Account::Withdraw(float amount, Currency currency) {
   CalculateBalance();
 
   return true;
+}
+
+ostream &operator<<(ostream &out, Account &account) {
+  account.Print(out);
+  return out;
 }
 
 const string &Account::getName() const {

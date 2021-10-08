@@ -9,13 +9,15 @@
 
 #include "SavingsAccount.h"
 
-class TrustAccount : protected SavingsAccount{
+class TrustAccount : public SavingsAccount{
 public:
-  TrustAccount(string name, float dollars, float euros, float tenge, float interestRate);
-  ~TrustAccount();
+  explicit TrustAccount(string name = "Unknown account",
+               float dollars = 0, float euros  = 0, float tenge = 0, float interestRate = 0);
+  ~TrustAccount() override;
 
   bool Deposit(float amount, Currency currency) override;
   bool Withdraw(float amount, Currency currency) override;
+  void Print(ostream &out) override;
 };
 
 
